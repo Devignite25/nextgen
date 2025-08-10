@@ -1,0 +1,2636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen AgriSolutions</title>
+    <link rel="icon" type="image/x-icon" href="images/logo/logo-1-150x150.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #1a4d1a;
+            --secondary-green: #2d5a27;
+            --accent-lime: #9acd32;
+            --bright-accent: #7cb342;
+            --neon-green: #39ff14;
+            --dark-text: #1a1a1a;
+            --light-bg: #f0fff0;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.15);
+            --glow: rgba(156, 255, 156, 0.3);
+            --gradient-1: linear-gradient(135deg, #1a4d1a 0%, #2d5a27 25%, #5a8a54 75%, #9acd32 100%);
+            --gradient-2: linear-gradient(45deg, #39ff14 0%, #9acd32 50%, #2d5a27 100%);
+            --gradient-3: linear-gradient(180deg, rgba(26, 77, 26, 0.9), rgba(45, 90, 39, 0.95));
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+            background: var(--light-bg);
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-lime);
+            border-radius: 50%;
+            animation: float-particles 15s infinite ease-in-out;
+            opacity: 0.1;
+        }
+
+        @keyframes float-particles {
+            0%, 100% { transform: translateY(100vh) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-100px) translateX(100px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover .logo-img {
+            transform: scale(1.15);
+            border-width: 5px;
+            box-shadow: 0 0 35px var(--glow);
+        }
+
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-lime);
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 0 25px var(--glow);
+            transition: all 0.3s ease;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+            color: var(--dark-text);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--glow);
+        }
+
+        .nav-item:hover::before,
+        .nav-item.active::before {
+            opacity: 1;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+            animation: pageTransition 0.8s ease-out;
+        }
+
+        @keyframes pageTransition {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.98);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/logo/pexels-timmossholder-2323381-2.jpg') center/cover;
+            opacity: 0.3;
+            z-index: 1;
+            animation: ken-burns 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes ken-burns {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        .hero-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(154, 205, 50, 0.1);
+            animation: morphing 8s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 80%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 70%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes morphing {
+            0%, 100% { 
+                border-radius: 50%; 
+                transform: scale(1) rotate(0deg);
+            }
+            25% { 
+                border-radius: 30% 70% 70% 30%; 
+                transform: scale(1.2) rotate(90deg);
+            }
+            50% { 
+                border-radius: 70% 30% 30% 70%; 
+                transform: scale(0.8) rotate(180deg);
+            }
+            75% { 
+                border-radius: 40% 60% 60% 40%; 
+                transform: scale(1.1) rotate(270deg);
+            }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: textGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+            to { text-shadow: 0 0 50px rgba(154, 205, 50, 0.8); }
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: buttonPulse 3s ease-in-out infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(154, 205, 50, 0.4);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(154, 205, 50, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(154, 205, 50, 0.6); }
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease-out 0.8s both;
+        }
+
+        @keyframes fadeInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: complexFloat 8s ease-in-out infinite;
+            max-width: 450px;
+            border: 1px solid rgba(154, 205, 50, 0.3);
+        }
+
+        @keyframes complexFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            }
+            25% { 
+                transform: translateY(-15px) rotate(1deg); 
+                box-shadow: 0 35px 60px rgba(154, 205, 50, 0.3);
+            }
+            50% { 
+                transform: translateY(-30px) rotate(0deg); 
+                box-shadow: 0 45px 70px rgba(0, 0, 0, 0.25);
+            }
+            75% { 
+                transform: translateY(-15px) rotate(-1deg); 
+                box-shadow: 0 35px 60px rgba(154, 205, 50, 0.3);
+            }
+        }
+
+        .floating-card h3 {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 6rem 2rem;
+            background: var(--gradient-3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: textSlideIn 1s ease-out;
+        }
+
+        @keyframes textSlideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            animation: videoZoom 1s ease-out 0.5s both;
+        }
+
+        @keyframes videoZoom {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: playButtonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes playButtonPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+            50% { transform: scale(1.1); box-shadow: 0 0 50px rgba(255, 255, 255, 0.6); }
+        }
+
+        .play-button:hover {
+            transform: scale(1.2);
+            background: white;
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-left: 5px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(154, 205, 50, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4rem;
+            position: relative;
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 6px;
+            background: var(--gradient-2);
+            border-radius: 3px;
+            animation: underlineGrow 2s ease-out;
+        }
+
+        @keyframes underlineGrow {
+            from { width: 0; }
+            to { width: 120px; }
+        }
+
+        .mission-content {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px var(--shadow);
+            font-size: 1.2rem;
+            line-height: 1.9;
+            text-align: center;
+            border: 2px solid rgba(154, 205, 50, 0.2);
+            animation: contentSlideUp 1s ease-out;
+        }
+
+        @keyframes contentSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--light-bg);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border: 3px solid var(--accent-lime);
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.8s ease-out;
+            box-shadow: 0 15px 35px rgba(154, 205, 50, 0.2);
+            background: linear-gradient(135deg, white 0%, var(--light-bg) 100%);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .service-card::after {
+            content: 'Click for Details';
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-lime);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(154, 205, 50, 0.4);
+            border-color: var(--bright-accent);
+            color: white;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.95;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+            transition: all 0.3s ease;
+            animation: iconBounce 2s ease-in-out infinite;
+            background: rgba(154, 205, 50, 0.1);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            border: 3px solid var(--accent-lime);
+            box-shadow: 0 10px 25px rgba(154, 205, 50, 0.2);
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .service-card:hover .service-icon {
+            color: white;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: white;
+        }
+
+        .service-card p {
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* About Page Styles */
+        .about-hero {
+            background: var(--gradient-1);
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/logo/pexels-timmossholder-2323381-2.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: heroTitleSlide 1s ease-out;
+        }
+
+        @keyframes heroTitleSlide {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .about-content {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            animation: textReveal 1s ease-out;
+        }
+
+        @keyframes textReveal {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .about-visual img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px var(--shadow);
+            transition: transform 0.3s ease;
+            animation: imageFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes imageFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.02) rotate(1deg); }
+        }
+
+        .about-visual img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 5rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px var(--shadow);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            animation: statCardSlide 0.8s ease-out;
+        }
+
+        @keyframes statCardSlide {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-lime);
+            box-shadow: 0 25px 45px rgba(154, 205, 50, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            animation: numberPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Page Styles */
+        .contact-hero {
+            background: var(--gradient-1);
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .contact-content {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 3px solid rgba(154, 205, 50, 0.2);
+            animation: contactSlideLeft 1s ease-out;
+        }
+
+        @keyframes contactSlideLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .contact-item {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(154, 205, 50, 0.2);
+        }
+
+        .contact-item h4 {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-green);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 3px solid rgba(154, 205, 50, 0.2);
+            animation: contactSlideRight 1s ease-out;
+        }
+
+        @keyframes contactSlideRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-lime);
+            box-shadow: 0 0 20px rgba(154, 205, 50, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gradient-1);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(154, 205, 50, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            animation: footerText 1s ease-out;
+        }
+
+        @keyframes footerText {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: 0 5px 20px var(--shadow);
+                padding: 2rem;
+                display: none;
+                border-radius: 0 0 20px 20px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                animation: mobileMenuSlide 0.3s ease-out;
+            }
+
+            @keyframes mobileMenuSlide {
+                from { transform: translateY(-20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Mobile menu toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 2s ease-out 1s forwards;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeOut {
+            to { 
+                opacity: 0; 
+                visibility: hidden; 
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive elements */
+        .interactive-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(154, 205, 50, 0.1), transparent);
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -50px) scale(1.2); }
+            50% { transform: translate(-50px, -100px) scale(0.8); }
+            75% { transform: translate(-100px, 50px) scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Interactive Background -->
+    <div class="interactive-bg">
+        <div class="bg-orb" style="width: 300px; height: 300px; top: 10%; left: 80%; animation-delay: 0s;"></div>
+        <div class="bg-orb" style="width: 200px; height: 200px; top: 60%; left: 10%; animation-delay: 5s;"></div>
+        <div class="bg-orb" style="width: 150px; height: 150px; top: 80%; left: 70%; animation-delay: 10s;"></div>
+    </div>
+
+    <!-- Animated Particles -->
+    <div class="particles">
+        <div class="particle" style="left: 10%; width: 6px; height: 6px; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; width: 8px; height: 8px; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; width: 4px; height: 4px; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; width: 10px; height: 10px; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 50%; width: 5px; height: 5px; animation-delay: 8s;"></div>
+        <div class="particle" style="left: 60%; width: 7px; height: 7px; animation-delay: 10s;"></div>
+        <div class="particle" style="left: 70%; width: 6px; height: 6px; animation-delay: 12s;"></div>
+        <div class="particle" style="left: 80%; width: 9px; height: 9px; animation-delay: 14s;"></div>
+        <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 16s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="images/logo/logo-1.png" 
+                     alt="NextGen AgriSolutions Logo" class="logo-img">
+                <div class="logo-text">NextGen AgriSolutions</div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </li>
+                <li class="nav-item" data-page="about">
+                    <i class="fas fa-info-circle"></i> About
+                </li>
+                <li class="nav-item" data-page="contact">
+                    <i class="fas fa-envelope"></i> Contact
+                </li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Innovating for Sustainable Agriculture</h1>
+                    <p>Empowering farmers and agricultural innovators with cutting-edge practices that promote conservation, sustainability, and environmental stewardship through advanced technology and expert guidance.</p>
+                    <button class="cta-button" onclick="showPage('contact')">
+                        <i class="fas fa-rocket"></i> Reach Out Today
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card">
+                        <h3><i class="fas fa-seedling"></i> Farm to Future</h3>
+                        <p>Transforming agriculture through innovation, sustainability, and education for the next generation. Join us in revolutionizing the farming industry with cutting-edge technology and sustainable practices.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(154, 205, 50, 0.1); border-radius: 10px;">
+                            <strong>✨ Advanced Solutions</strong><br>
+                            <small>Drone Technology • Grant Writing • Crop Mapping • Education</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section - Temporarily using placeholder until videos are converted -->
+        <section class="video-section scroll-reveal">
+            <div class="video-container">
+                <h2><i class="fas fa-play-circle"></i> See Our Impact</h2>
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 3rem;">
+                    Watch our agricultural innovations in action - from drone technology to engineering excellence
+                </p>
+                
+                <!-- Video Conversion Notice -->
+                <div style="
+                    background: rgba(255, 255, 255, 0.95);
+                    backdrop-filter: blur(20px);
+                    padding: 3rem;
+                    border-radius: 25px;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    text-align: center;
+                    border: 3px solid var(--accent-lime);
+                ">
+                    <div style="font-size: 4rem; color: var(--primary-green); margin-bottom: 1rem;">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">
+                        Videos Coming Soon!
+                    </h3>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6;">
+                        We're preparing stunning videos of our drone technology and agricultural innovations. 
+                        Your <strong>.mov</strong> files need to be converted to <strong>.mp4</strong> format for web compatibility.
+                    </p>
+                    
+                    <div style="
+                        background: var(--light-bg);
+                        padding: 2rem;
+                        border-radius: 15px;
+                        margin: 2rem 0;
+                        text-align: left;
+                    ">
+                        <h4 style="color: var(--primary-green); margin-bottom: 1rem;">
+                            <i class="fas fa-tools"></i> Quick Conversion Steps:
+                        </h4>
+                        <ol style="padding-left: 1.5rem;">
+                            <li><strong>Online Method:</strong> Upload your .mov files to <a href="https://cloudconvert.com" target="_blank" style="color: var(--primary-green);">CloudConvert.com</a></li>
+                            <li><strong>Desktop Method:</strong> Use VLC Media Player (File → Convert/Stream)</li>
+                            <li><strong>Save as:</strong> MP4 format with H.264 codec</li>
+                            <li><strong>Replace files:</strong> Keep same names but change .mov to .mp4</li>
+                        </ol>
+                    </div>
+                    
+                    <button onclick="showVideoPlaceholder()" class="cta-button" style="margin-top: 1rem;">
+                        <i class="fas fa-eye"></i> Preview Video Layout
+                    </button>
+                </div>
+                
+                <!-- Hidden video player for when videos are ready -->
+                <div id="actualVideoPlayer" style="display: none;">
+                    <div class="video-wrapper">
+                        <video id="mainVideo" autoplay muted loop controls poster="images/logo/pexels-timmossholder-2323381-2.jpg" preload="metadata">
+                            <source src="videos/vecteezy_agriculture-drone.mp4" type="video/mp4">
+                            <source src="videos/vecteezy_male-engineer.mp4" type="video/mp4">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls" style="
+                            position: absolute;
+                            bottom: 20px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            display: flex;
+                            gap: 1rem;
+                            z-index: 10;
+                        ">
+                            <button onclick="switchVideo(0)" class="video-switch-btn active">
+                                <i class="fas fa-helicopter"></i> Drone Tech
+                            </button>
+                            <button onclick="switchVideo(1)" class="video-switch-btn">
+                                <i class="fas fa-user-tie"></i> Our Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission scroll-reveal">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <div class="mission-content">
+                    <p>At NextGen AgriSolutions Inc., our mission is to empower farmers and agricultural innovators with cutting-edge practices that promote conservation, sustainability, and environmental stewardship. We provide expert grant management and writing services, agricultural drone piloting, and crop mapping to enhance productivity and efficiency.</p>
+                    <br>
+                    <p>Our Farm 2 School initiative fosters awareness and appreciation of agriculture in younger generations, creating a bridge between traditional farming wisdom and modern technological innovation.</p>
+                    <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <i class="fas fa-leaf" style="font-size: 2rem; color: var(--primary-green); margin-bottom: 0.5rem;"></i>
+                            <div><strong>Sustainability</strong></div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <i class="fas fa-cogs" style="font-size: 2rem; color: var(--primary-green); margin-bottom: 0.5rem;"></i>
+                            <div><strong>Innovation</strong></div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <i class="fas fa-users" style="font-size: 2rem; color: var(--primary-green); margin-bottom: 0.5rem;"></i>
+                            <div><strong>Community</strong></div>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--primary-green); margin-bottom: 0.5rem;"></i>
+                            <div><strong>Education</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services scroll-reveal">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-tools"></i> Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Grant Management & Writing</h3>
+                        <p>Expert assistance in securing funding through comprehensive grant management and professional writing services tailored for agricultural projects. We help you navigate complex funding opportunities and maximize your success rate.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(154, 205, 50, 0.1); border-radius: 10px;">
+                            <small><strong>✓</strong> Proposal Writing <strong>✓</strong> Application Management <strong>✓</strong> Follow-up Support</small>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-helicopter"></i></div>
+                        <h3>Agricultural Drone Piloting</h3>
+                        <p>Advanced drone technology for precision agriculture, monitoring crop health, and optimizing farm operations with aerial insights. Our certified pilots provide detailed analysis and actionable data.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(154, 205, 50, 0.1); border-radius: 10px;">
+                            <small><strong>✓</strong> Crop Monitoring <strong>✓</strong> Precision Spraying <strong>✓</strong> Data Analysis</small>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-map"></i></div>
+                        <h3>Crop Mapping</h3>
+                        <p>Detailed crop mapping solutions using cutting-edge technology to enhance productivity and make data-driven farming decisions. Transform your agricultural operations with precise mapping and analytics.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(154, 205, 50, 0.1); border-radius: 10px;">
+                            <small><strong>✓</strong> Field Analysis <strong>✓</strong> Yield Prediction <strong>✓</strong> Resource Optimization</small>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-school"></i></div>
+                        <h3>Farm 2 School Initiative</h3>
+                        <p>Educational programs that connect farms with schools, fostering agricultural awareness and appreciation in younger generations. Building tomorrow's agricultural leaders through hands-on learning experiences.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(154, 205, 50, 0.1); border-radius: 10px;">
+                            <small><strong>✓</strong> Educational Workshops <strong>✓</strong> Farm Visits <strong>✓</strong> Curriculum Development</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section class="gallery-section scroll-reveal" style="padding: 6rem 2rem; background: var(--light-bg);">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-images"></i> Our Work in Action</h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 4rem; color: #666;">
+                    See how we're transforming agriculture through innovation and technology
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="gallery-item" style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px var(--shadow); transition: all 0.3s ease; cursor: pointer;">
+                        <img src="images/gallary/pexels-freestockpro-1007865-scaled.jpg" 
+                             alt="Advanced farming techniques" 
+                             style="width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: var(--gradient-3); color: white; padding: 1.5rem; transform: translateY(100%); transition: transform 0.3s ease;">
+                            <h4><i class="fas fa-seedling"></i> Precision Agriculture</h4>
+                            <p>Advanced farming techniques for optimal crop yields</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px var(--shadow); transition: all 0.3s ease; cursor: pointer;">
+                        <img src="images/logo/pexels-blooddrainer-221016-300x187.jpg" 
+                             alt="Agricultural equipment" 
+                             style="width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: var(--gradient-3); color: white; padding: 1.5rem; transform: translateY(100%); transition: transform 0.3s ease;">
+                            <h4><i class="fas fa-tractor"></i> Modern Equipment</h4>
+                            <p>State-of-the-art agricultural machinery and tools</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about-hero">
+            <div class="hero-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="container">
+                <h1><i class="fas fa-info-circle"></i> About NextGen AgriSolutions</h1>
+                <p style="font-size: 1.3rem; margin-top: 1rem;">Your trusted partner in agricultural innovation and sustainability</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid scroll-reveal">
+                    <div class="about-text">
+                        <h2 style="color: var(--primary-green); margin-bottom: 1.5rem;">
+                            <i class="fas fa-users"></i> Who We Are
+                        </h2>
+                        <p>At NextGen AgriSolutions Inc., we are more than just a service provider — we are a partner in your agricultural journey. Our team is composed of industry experts who bring a wealth of knowledge and experience to the table.</p>
+                        <br>
+                        <p>We understand the unique challenges that farmers and agricultural innovators face, and we are committed to providing solutions that are tailored to your specific needs. Our multidisciplinary approach combines traditional agricultural wisdom with cutting-edge technology.</p>
+                        <br>
+                        <div style="padding: 1.5rem; background: rgba(154, 205, 50, 0.1); border-radius: 15px; border-left: 5px solid var(--accent-lime);">
+                            <strong><i class="fas fa-quote-left"></i> "Innovation in agriculture isn't just about technology—it's about creating sustainable solutions that benefit farmers, communities, and the environment."</strong>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <img src="images/logo/pexels-nicolasveithen-1719669-scaled.jpg" 
+                             alt="Agricultural innovation">
+                    </div>
+                </div>
+
+                <div class="stats-grid scroll-reveal">
+                    <div class="stat-card">
+                        <span class="stat-number">500+</span>
+                        <div class="stat-label"><i class="fas fa-project-diagram"></i> Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <div class="stat-label"><i class="fas fa-calendar"></i> Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <div class="stat-label"><i class="fas fa-heart"></i> Customer Satisfaction</div>
+                    </div>
+                </div>
+
+                <div class="about-text scroll-reveal" style="text-align: center; margin-top: 4rem;">
+                    <h2 style="color: var(--primary-green); margin-bottom: 1.5rem;">
+                        <i class="fas fa-handshake"></i> Our Commitment
+                    </h2>
+                    <p>Our commitment to innovation and sustainability sets us apart. We believe in harnessing the power of technology to drive agricultural progress, and we are constantly exploring new ways to improve efficiency and productivity. At the same time, we understand the importance of sustainability and conservation.</p>
+                    <br>
+                    <p>Every project we undertake is guided by our core values of integrity, innovation, and environmental stewardship. We work closely with our clients to ensure that our solutions not only meet their immediate needs but also contribute to long-term sustainability and success.</p>
+                    <button class="cta-button" onclick="showPage('contact')" style="margin-top: 2rem;">
+                        <i class="fas fa-handshake"></i> Partner With Us
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact-hero">
+            <div class="hero-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="container">
+                <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+                <p style="font-size: 1.3rem; margin-top: 1rem;">Ready to transform your agricultural operations? Let's connect and grow together.</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 4rem; line-height: 1.8;">
+                    At NextGen AgriSolutions Inc. we're always ready to connect with you. Whether you're seeking more information about our services, have questions about our innovative agricultural practices, or are interested in partnering with us, our dedicated team is here to assist you every step of the way.
+                </p>
+
+                <div class="contact-grid">
+                    <div class="contact-info scroll-reveal">
+                        <h3 style="color: var(--primary-green); margin-bottom: 2rem; font-size: 2rem;">
+                            <i class="fas fa-phone"></i> Get In Touch
+                        </h3>
+                        
+                        <div class="contact-item">
+                            <h4><i class="fas fa-phone"></i> Phone</h4>
+                            <a href="tel:9042397286">904-239-7286</a>
+                            <small style="display: block; margin-top: 0.5rem; color: #666;">Available during business hours</small>
+                        </div>
+
+                        <div class="contact-item">
+                            <h4><i class="fas fa-envelope"></i> Email</h4>
+                            <a href="mailto:Karly@nextgenagrisolutions.org">Karly@nextgenagrisolutions.org</a>
+                            <small style="display: block; margin-top: 0.5rem; color: #666;">We respond within 24 hours</small>
+                        </div>
+
+                        <div class="contact-item">
+                            <h4><i class="fas fa-clock"></i> Business Hours</h4>
+                            <p>Monday–Friday<br>9:00am–5:00pm<br><small style="color: #666;">Eastern Time Zone</small></p>
+                        </div>
+
+                        <div style="margin-top: 2rem; padding: 2rem; background: var(--light-bg); border-radius: 15px; text-align: center;">
+                            <img src="images/logo/pexels-taryn-elliott-3889959-768x512.jpg" 
+                                 alt="Farm landscape" 
+                                 style="width: 100%; border-radius: 15px; margin-bottom: 1rem;">
+                            <p style="font-style: italic; color: #666;">
+                                <i class="fas fa-map-marker-alt"></i> Serving agricultural communities nationwide
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form scroll-reveal">
+                        <h3 style="color: var(--primary-green); margin-bottom: 2rem; font-size: 2rem;">
+                            <i class="fas fa-paper-plane"></i> Send us a message
+                        </h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message"><i class="fas fa-comment"></i> Message</label>
+                                <textarea id="message" name="message" required placeholder="Tell us about your agricultural needs and how we can help..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="cta-button" style="width: 100%;">
+                                <i class="fas fa-rocket"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-copyright"></i> 2025 NextGen AgriSolutions Inc. All rights reserved.</p>
+            <p style="margin-top: 1rem;"><i class="fas fa-seedling"></i> Innovating for a sustainable agricultural future.</p>
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="tel:9042397286" style="color: white; text-decoration: none;">
+                    <i class="fas fa-phone"></i> 904-239-7286
+                </a>
+                <a href="mailto:Karly@nextgenagrisolutions.org" style="color: white; text-decoration: none;">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 8 + 3) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Page Navigation with enhanced animations
+        function showPage(pageId) {
+            // Hide all pages with exit animation
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    page.classList.remove('active');
+                    page.style.animation = '';
+                }, 300);
+            });
+            
+            // Show selected page with enter animation
+            setTimeout(() => {
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update navigation
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Trigger scroll reveal animations
+                setTimeout(() => {
+                    revealOnScroll();
+                }, 100);
+            }, 300);
+        }
+
+        // Enhanced video availability checker
+        function checkVideoAvailability() {
+            const mp4Videos = [
+                'videos/vecteezy_agriculture-drone.mp4',
+                'videos/vecteezy_male-engineer.mp4'
+            ];
+            
+            let availableVideos = [];
+            let loadedCount = 0;
+            
+            mp4Videos.forEach((videoSrc, index) => {
+                const testVideo = document.createElement('video');
+                testVideo.src = videoSrc;
+                
+                testVideo.addEventListener('loadstart', () => {
+                    console.log(`✅ Found MP4 video: ${videoSrc}`);
+                    availableVideos.push(videoSrc);
+                    checkIfReady();
+                });
+                
+                testVideo.addEventListener('error', () => {
+                    console.log(`❌ MP4 video not found: ${videoSrc}`);
+                    checkIfReady();
+                });
+                
+                // Timeout check
+                setTimeout(() => {
+                    loadedCount++;
+                    checkIfReady();
+                }, 1000);
+            });
+            
+            function checkIfReady() {
+                loadedCount++;
+                if (loadedCount >= mp4Videos.length * 2) { // Account for both events
+                    if (availableVideos.length > 0) {
+                        console.log(`🎥 Found ${availableVideos.length} working videos!`);
+                        activateVideoPlayer(availableVideos);
+                    } else {
+                        console.log('📝 No MP4 videos ready yet - showing instructions');
+                    }
+                }
+            }
+        }
+
+        function activateVideoPlayer(availableVideos) {
+            const placeholder = document.querySelector('.video-section .video-container > div');
+            const actualPlayer = document.getElementById('actualVideoPlayer');
+            const video = document.getElementById('mainVideo');
+            
+            if (placeholder && actualPlayer && video) {
+                // Hide placeholder and show video player
+                placeholder.style.display = 'none';
+                actualPlayer.style.display = 'block';
+                
+                // Update video sources with available videos
+                video.innerHTML = availableVideos.map(src => 
+                    `<source src="${src}" type="video/mp4">`
+                ).join('') + 
+                `<source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">`;
+                
+                // Reload video with new sources
+                video.load();
+                
+                // Show success notification
+                showVideoSuccessNotification(availableVideos.length);
+                
+                // Initialize video controls
+                initializeVideoControls(availableVideos);
+                
+                // Start autoplay
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('🎬 Autoplay started successfully!');
+                        if (availableVideos.length > 1) {
+                            setTimeout(startVideoRotation, 5000);
+                        }
+                    }).catch(error => {
+                        console.log('⚠️ Autoplay prevented by browser:', error);
+                    });
+                }
+            }
+        }
+
+        function showVideoSuccessNotification(videoCount) {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: var(--gradient-2);
+                    color: white;
+                    padding: 1.5rem 2rem;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    animation: slideInRight 0.5s ease-out;
+                    max-width: 350px;
+                ">
+                    <h4 style="margin: 0 0 0.5rem 0;">
+                        <i class="fas fa-check-circle"></i> Videos Ready!
+                    </h4>
+                    <p style="margin: 0; font-size: 0.9rem;">
+                        Found ${videoCount} MP4 video${videoCount > 1 ? 's' : ''} and started autoplay! 
+                        ${videoCount > 1 ? 'Videos will rotate automatically.' : 'Convert your second video for rotation.'}
+                    </p>
+                    <button onclick="this.parentElement.parentElement.remove();" style="
+                        background: rgba(255,255,255,0.2);
+                        border: none;
+                        color: white;
+                        padding: 0.5rem 1rem;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        margin-top: 1rem;
+                        font-size: 0.8rem;
+                    ">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 6 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 6000);
+        }
+
+        function initializeVideoControls(availableVideos) {
+            const buttons = document.querySelectorAll('.video-switch-btn');
+            
+            // Show/hide buttons based on available videos
+            buttons.forEach((button, index) => {
+                if (index < availableVideos.length) {
+                    button.style.display = 'block';
+                    button.onclick = () => switchToVideo(index, availableVideos);
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        function switchToVideo(index, availableVideos) {
+            const video = document.getElementById('mainVideo');
+            const buttons = document.querySelectorAll('.video-switch-btn');
+            
+            if (availableVideos[index]) {
+                video.src = availableVideos[index];
+                video.load();
+                video.play();
+                
+                // Update button states
+                buttons.forEach((btn, i) => {
+                    if (i === index) {
+                        btn.classList.add('active');
+                        btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                        btn.style.borderColor = 'var(--accent-lime)';
+                        btn.style.transform = 'scale(1.05)';
+                    } else {
+                        btn.classList.remove('active');
+                        btn.style.background = 'rgba(255, 255, 255, 0.7)';
+                        btn.style.borderColor = 'rgba(154, 205, 50, 0.5)';
+                        btn.style.transform = 'scale(1)';
+                    }
+                });
+            }
+        }
+
+        function startVideoRotation() {
+            const video = document.getElementById('mainVideo');
+            const buttons = document.querySelectorAll('.video-switch-btn');
+            const visibleButtons = Array.from(buttons).filter(btn => btn.style.display !== 'none');
+            
+            if (visibleButtons.length > 1) {
+                let currentIndex = 0;
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % visibleButtons.length;
+                    visibleButtons[currentIndex].click();
+                }, 20000); // Switch every 20 seconds
+                
+                console.log('🔄 Video rotation started - switching every 20 seconds');
+            }
+        }
+
+        function switchVideo(index) {
+            const video = document.getElementById('mainVideo');
+            const buttons = document.querySelectorAll('.video-switch-btn');
+            
+            if (index !== currentVideoIndex && videoSources[index]) {
+                currentVideoIndex = index;
+                
+                // Try MP4 first, then MOV, then fallback
+                const source = videoSources[index];
+                
+                video.innerHTML = `
+                    <source src="${source.mp4}" type="video/mp4">
+                    <source src="${source.mov}" type="video/quicktime">
+                    <source src="${source.fallback}" type="video/mp4">
+                `;
+                
+                video.load();
+                
+                // Try to play with error handling
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('✅ Video playing successfully');
+                    }).catch(error => {
+                        console.log('❌ Video play failed:', error);
+                        // Try fallback
+                        video.src = source.fallback;
+                        video.load();
+                        video.play();
+                    });
+                }
+                
+                // Update button states
+                buttons.forEach((btn, i) => {
+                    if (i === index && btn.classList.contains('video-switch-btn')) {
+                        btn.classList.add('active');
+                        btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                        btn.style.borderColor = 'var(--accent-lime)';
+                        btn.style.transform = 'scale(1.05)';
+                    } else if (btn.classList.contains('video-switch-btn')) {
+                        btn.classList.remove('active');
+                        btn.style.background = 'rgba(255, 255, 255, 0.7)';
+                        btn.style.borderColor = 'rgba(154, 205, 50, 0.5)';
+                        btn.style.transform = 'scale(1)';
+                    }
+                });
+            }
+        }
+
+        function playVideo() {
+            const video = document.getElementById('mainVideo');
+            const overlay = document.getElementById('videoOverlay');
+            
+            if (video && overlay) {
+                video.play();
+                overlay.classList.add('hidden');
+                
+                video.onended = function() {
+                    overlay.classList.remove('hidden');
+                };
+            }
+        }
+
+        // Auto-cycle through videos every 30 seconds (only if videos are working)
+        function startVideoRotation() {
+            const video = document.getElementById('mainVideo');
+            
+            // Only start rotation if video is actually playing
+            if (video && !video.error && video.readyState >= 2) {
+                setInterval(() => {
+                    const nextIndex = (currentVideoIndex + 1) % videoSources.length;
+                    switchVideo(nextIndex);
+                }, 30000); // 30 seconds
+            } else {
+                console.log('⚠️ Video rotation disabled - videos not ready');
+            }
+        }
+
+        // Enhanced scroll reveal
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // Navigation event listeners
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger
+            const spans = this.querySelectorAll('span');
+            spans.forEach((span, index) => {
+                if (navMenu.classList.contains('active')) {
+                    if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    if (index === 1) span.style.opacity = '0';
+                    if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    span.style.transform = 'none';
+                    span.style.opacity = '1';
+                }
+            });
+        });
+
+        // Enhanced form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            
+            // Animate button
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.disabled = true;
+            button.style.background = 'var(--accent-lime)';
+            
+            // Simulate form submission with realistic timing
+            setTimeout(() => {
+                // Success animation
+                button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                button.style.background = 'var(--bright-accent)';
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.innerHTML = `
+                    <div style="
+                        position: fixed; 
+                        top: 100px; 
+                        right: 20px; 
+                        background: var(--gradient-2); 
+                        color: white; 
+                        padding: 1rem 2rem; 
+                        border-radius: 10px; 
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        z-index: 9999;
+                        animation: slideInRight 0.5s ease-out;
+                    ">
+                        <i class="fas fa-check-circle"></i> Thank you! We'll get back to you soon.
+                    </div>
+                `;
+                document.body.appendChild(successMsg);
+                
+                // Remove success message after 4 seconds
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 4000);
+                
+                // Reset form and button
+                this.reset();
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    button.style.background = '';
+                }, 2000);
+            }, 2500);
+        });
+
+        // Advanced scroll animations
+        let ticking = false;
+        
+        function updateScrollAnimations() {
+            revealOnScroll();
+            
+            // Parallax effect for hero background
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+            
+            // Navbar background opacity
+            const navbar = document.querySelector('.navbar');
+            const opacity = Math.min(scrolled / 100, 0.95);
+            navbar.style.background = `rgba(255, 255, 255, ${opacity + 0.1})`;
+            
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollAnimations);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+
+        // Service card advanced interactions
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03) rotateY(5deg)';
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
+            });
+            
+            // Add click functionality with detailed modals
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    border-radius: 50%;
+                    background: rgba(154, 205, 50, 0.3);
+                    left: ${x}px;
+                    top: ${y}px;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+                
+                // Create service modal
+                createServiceModal(index);
+            });
+        });
+
+        // Create service modal function
+        function createServiceModal(serviceIndex) {
+            const services = [
+                {
+                    title: "Grant Management & Writing",
+                    icon: "fas fa-file-alt",
+                    description: "Expert assistance in securing funding through comprehensive grant management and professional writing services tailored for agricultural projects.",
+                    details: [
+                        "Comprehensive grant research and identification",
+                        "Professional proposal writing and editing",
+                        "Application submission and tracking",
+                        "Follow-up communications with funding agencies",
+                        "Success rate improvement strategies",
+                        "Compliance and reporting assistance"
+                    ],
+                    benefits: "Our grant writing services have helped clients secure over $2M in funding with a 78% success rate.",
+                    cta: "Get Grant Writing Help"
+                },
+                {
+                    title: "Agricultural Drone Piloting",
+                    icon: "fas fa-helicopter",
+                    description: "Advanced drone technology for precision agriculture, monitoring crop health, and optimizing farm operations with aerial insights.",
+                    details: [
+                        "Crop health monitoring and analysis",
+                        "Precision spraying and application",
+                        "Field mapping and surveying",
+                        "Livestock monitoring and counting",
+                        "Infrastructure inspection",
+                        "Real-time data collection and reporting"
+                    ],
+                    benefits: "Our drone services increase crop yields by 15-25% through precision monitoring and targeted interventions.",
+                    cta: "Schedule Drone Services"
+                },
+                {
+                    title: "Crop Mapping",
+                    icon: "fas fa-map",
+                    description: "Detailed crop mapping solutions using cutting-edge technology to enhance productivity and make data-driven farming decisions.",
+                    details: [
+                        "High-resolution field mapping",
+                        "Soil analysis and fertility mapping",
+                        "Yield prediction modeling",
+                        "Irrigation optimization planning",
+                        "Pest and disease identification",
+                        "Historical data analysis and trends"
+                    ],
+                    benefits: "Our mapping technology helps farmers reduce input costs by 20% while improving yields through precision agriculture.",
+                    cta: "Start Crop Mapping"
+                },
+                {
+                    title: "Farm 2 School Initiative",
+                    icon: "fas fa-school",
+                    description: "Educational programs that connect farms with schools, fostering agricultural awareness and appreciation in younger generations.",
+                    details: [
+                        "Curriculum development and integration",
+                        "On-farm educational visits and tours",
+                        "Classroom workshops and presentations",
+                        "Teacher training and resources",
+                        "Student agriculture competitions",
+                        "Community outreach programs"
+                    ],
+                    benefits: "Our Farm 2 School programs have reached over 10,000 students, inspiring the next generation of agricultural leaders.",
+                    cta: "Join Farm 2 School"
+                }
+            ];
+
+            const service = services[serviceIndex];
+            
+            // Create modal HTML
+            const modal = document.createElement('div');
+            modal.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    animation: modalFadeIn 0.3s ease-out;
+                    padding: 2rem;
+                    box-sizing: border-box;
+                " class="service-modal">
+                    <div style="
+                        background: white;
+                        border-radius: 25px;
+                        max-width: 700px;
+                        width: 100%;
+                        max-height: 90vh;
+                        overflow-y: auto;
+                        position: relative;
+                        animation: modalSlideIn 0.4s ease-out;
+                        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+                    ">
+                        <div style="
+                            background: var(--gradient-2);
+                            color: white;
+                            padding: 2rem;
+                            border-radius: 25px 25px 0 0;
+                            text-align: center;
+                            position: relative;
+                        ">
+                            <button onclick="closeServiceModal()" style="
+                                position: absolute;
+                                top: 1rem;
+                                right: 1rem;
+                                background: rgba(255, 255, 255, 0.2);
+                                border: none;
+                                color: white;
+                                font-size: 1.5rem;
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <i class="${service.icon}" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                            <h2 style="margin: 0; font-size: 2rem;">${service.title}</h2>
+                        </div>
+                        
+                        <div style="padding: 2rem;">
+                            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: #666;">
+                                ${service.description}
+                            </p>
+                            
+                            <h3 style="color: var(--primary-green); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-check-circle"></i> What We Offer:
+                            </h3>
+                            <ul style="margin-bottom: 2rem; padding-left: 0;">
+                                ${service.details.map(detail => `
+                                    <li style="
+                                        list-style: none;
+                                        padding: 0.5rem 0;
+                                        border-bottom: 1px solid #eee;
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 0.5rem;
+                                    ">
+                                        <i class="fas fa-leaf" style="color: var(--accent-lime); font-size: 0.8rem;"></i>
+                                        ${detail}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            
+                            <div style="
+                                background: var(--light-bg);
+                                padding: 1.5rem;
+                                border-radius: 15px;
+                                margin-bottom: 2rem;
+                                border-left: 5px solid var(--accent-lime);
+                            ">
+                                <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">
+                                    <i class="fas fa-chart-line"></i> Impact & Results:
+                                </h4>
+                                <p style="margin: 0; font-style: italic; color: #555;">
+                                    ${service.benefits}
+                                </p>
+                            </div>
+                            
+                            <div style="text-align: center;">
+                                <button onclick="showPage('contact')" style="
+                                    background: var(--gradient-2);
+                                    color: white;
+                                    padding: 1rem 2rem;
+                                    border: none;
+                                    border-radius: 50px;
+                                    font-size: 1.1rem;
+                                    font-weight: bold;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    text-transform: uppercase;
+                                    letter-spacing: 1px;
+                                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(154,205,50,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <i class="fas fa-rocket"></i> ${service.cta}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+            
+            // Close on backdrop click
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeServiceModal();
+                }
+            });
+        }
+
+        // Close service modal function
+        function closeServiceModal() {
+            const modal = document.querySelector('.service-modal');
+            if (modal) {
+                modal.style.animation = 'modalFadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        // Add modal animations to CSS
+        const modalStyles = document.createElement('style');
+        modalStyles.textContent = `
+            @keyframes modalFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes modalFadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            
+            @keyframes modalSlideIn {
+                from { transform: translateY(-50px) scale(0.9); opacity: 0; }
+                to { transform: translateY(0) scale(1); opacity: 1; }
+            }
+            
+            .service-modal::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            .service-modal::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+            
+            .service-modal::-webkit-scrollbar-thumb {
+                background: var(--accent-lime);
+                border-radius: 10px;
+            }
+            
+            .service-modal::-webkit-scrollbar-thumb:hover {
+                background: var(--primary-green);
+            }
+        `;
+        document.head.appendChild(modalStyles);
+
+        // Animated counters for statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const finalValue = element.textContent;
+                        const isNumber = finalValue.match(/\d+/);
+                        
+                        if (isNumber) {
+                            const number = parseInt(isNumber[0]);
+                            const suffix = finalValue.replace(number.toString(), '');
+                            let current = 0;
+                            const increment = number / 60;
+                            const duration = 2000;
+                            const startTime = Date.now();
+                            
+                            const updateCounter = () => {
+                                const elapsed = Date.now() - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                
+                                // Easing function for smooth animation
+                                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                                current = number * easeOutQuart;
+                                
+                                element.textContent = Math.floor(current) + suffix;
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    element.textContent = number + suffix;
+                                }
+                            };
+                            
+                            updateCounter();
+                        }
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // Mouse move parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) * 100;
+            const mouseY = (e.clientY / window.innerHeight) * 100;
+            
+            // Move floating shapes based on mouse position
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.01;
+                const x = (mouseX - 50) * speed;
+                const y = (mouseY - 50) * speed;
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            // Move background orbs
+            const orbs = document.querySelectorAll('.bg-orb');
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.005;
+                const x = (mouseX - 50) * speed;
+                const y = (mouseY - 50) * speed;
+                orb.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Intersection Observer for advanced animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    
+                    // Special animations for specific elements
+                    if (entry.target.classList.contains('service-card')) {
+                        const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 200;
+                        setTimeout(() => {
+                            entry.target.style.animation = 'cardAppear 0.8s ease-out forwards';
+                        }, delay);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Text typing effect for hero
+        function typeText(element, text, speed = 50) {
+            element.textContent = '';
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            // Initialize scroll reveal
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Initialize counters
+            animateCounters();
+            
+            // Add CSS for additional animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to { transform: scale(2); opacity: 0; }
+                }
+                
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                
+                @keyframes fadeOut {
+                    from { opacity: 1; transform: scale(1); }
+                    to { opacity: 0; transform: scale(0.95); }
+                }
+                
+                .revealed {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                }
+                
+                .cta-button {
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .floating-card:hover {
+                    animation-play-state: paused;
+                    transform: translateY(-35px) scale(1.02);
+                }
+                
+                .service-card {
+                    animation-delay: calc(var(--index, 0) * 0.2s);
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Remove loading screen
+            setTimeout(() => {
+                const loading = document.querySelector('.loading-overlay');
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.remove();
+                }, 500);
+            }, 2000);
+            
+            // Add service card indices for staggered animations
+            document.querySelectorAll('.service-card').forEach((card, index) => {
+                card.style.setProperty('--index', index);
+            });
+            
+            // Enhanced logo hover effect
+            const logoContainer = document.querySelector('.logo-container');
+            logoContainer.addEventListener('mouseenter', () => {
+                const logoImg = logoContainer.querySelector('.logo-img');
+                logoImg.style.animation = 'rotate 2s linear infinite, pulse 1s ease-in-out infinite';
+            });
+            
+            logoContainer.addEventListener('mouseleave', () => {
+                const logoImg = logoContainer.querySelector('.logo-img');
+                logoImg.style.animation = 'rotate 20s linear infinite';
+            });
+
+            // Gallery hover effects
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const img = this.querySelector('img');
+                    const overlay = this.querySelector('div');
+                    
+                    img.style.transform = 'scale(1.1)';
+                    overlay.style.transform = 'translateY(0)';
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const img = this.querySelector('img');
+                    const overlay = this.querySelector('div');
+                    
+                    img.style.transform = 'scale(1)';
+                    overlay.style.transform = 'translateY(100%)';
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('🌱 NextGen AgriSolutions website loaded successfully!');
+        });
+
+                    // Check for video availability on page load
+            setTimeout(() => {
+                checkVideoAvailability();
+            }, 2000);
+
+            // Enhanced video controls styling
+            const videoButtons = document.querySelectorAll('.video-switch-btn');
+            videoButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.background = 'rgba(255, 255, 255, 0.9)';
+                        this.style.transform = 'scale(1.02)';
+                    }
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.background = 'rgba(255, 255, 255, 0.7)';
+                        this.style.transform = 'scale(1)';
+                    }
+                });
+            });
+
+        // Dynamic background color based on scroll position
+        function updateThemeColor() {
+            const scrollPercent = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            const hue = 90 + (scrollPercent * 30); // Shift from green to yellow-green
+            document.documentElement.style.setProperty('--dynamic-hue', hue);
+        }
+
+        window.addEventListener('scroll', updateThemeColor);
+
+        // Add performance optimization
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Recalculate animations on resize
+                revealOnScroll();
+            }, 250);
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+</body>
+</html>
