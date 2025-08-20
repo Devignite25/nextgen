@@ -1,0 +1,207 @@
+HPG page on website
+Karly McGraw
+	
+Aug 15, 2025, 10:19 AM (5 days ago)
+	
+to me
+1. Overview and Purpose
+
+NextGen AgriSolutions, Inc., a 501(c)(3) non-profit, proposes a $200,000 Housing Preservation Grant (HPG) program to repair and rehabilitate 4-5 homes for very low-income homeowners in rural Fort White (Columbia County) and Northeast Florida (e.g., Baker, Bradford, Union Counties). In partnership with JEM Home Restoration, we aim to address substandard housing by providing critical repairs (e.g., roofing, plumbing, accessibility modifications) to ensure safe, affordable homes for households earning less than 50% of the area median income (AMI). The 24-month program will leverage $300,000 in additional funds from partner contributions, homeowner sweat equity, and local donations to maximize impact, aligning with the HPG’s mission to preserve rural housing for very low- and low-income residents.
+2. Program Details
+a. Type and Conditions of Assistance
+
+This program will provide homeowner assistance through grants and no-interest loans to very low-income (<50% AMI) and low-income (50-80% AMI) homeowners for home repairs and rehabilitation. Assistance will cover structural repairs (e.g., roofs, foundations), energy efficiency upgrades (e.g., insulation, HVAC), and accessibility improvements (e.g., ramps). No rental or cooperative properties are included, and no “identity of interest” exists between NextGen, JEM, or homeowners, per 7 CFR 1944.662(c).
+b. Recipient Selection Process
+
+    Outreach: Advertise via local newspapers (Lake City Reporter), churches, and community centers in Fort White and NE Florida.
+
+    Eligibility: Verify income (<50% AMI for very low, 50-80% for low) using tax returns/W-2s; prioritize households with substandard housing (e.g., leaking roofs, no heat).
+
+    Needs Assessment: JEM Home Restoration will inspect homes to identify repair needs, prioritizing health/safety and overcrowding relief (e.g., adding bedrooms for multi-generational families).
+
+    Approval: A selection committee (NextGen staff and community volunteers) will rank applications based on income, housing condition, and urgency.
+
+c. Work Performance and Monitoring
+
+    Work Performed: JEM Home Restoration, with 10+ years of renovation expertise, will execute repairs using Rural Development (RD) standards (per RD Instruction 1944-N) or local building codes accepted by Columbia County.
+
+    Monitoring: NextGen will conduct monthly site visits to ensure quality and compliance. Homeowners will sign off on completed work. Quarterly reports to RD will track progress, costs, and outcomes (per 7 CFR 1944.683(b)).
+
+d. Environmental Compliance
+
+NextGen will adopt RD Instruction 1944-N, Exhibit F-1, for environmental compliance (per 7 CFR 1944.672–673). We self-certify no adverse impacts on historic properties, floodplains, or wetlands. Repairs will be minor (e.g., interior/exterior fixes), with no ground disturbance. A Multi-tier Action Environmental Compliance Agreement (RD Instruction 1970-A, Exhibit H) will be submitted.
+e. Development Standards
+
+Repairs will follow RD standards for existing dwellings or Columbia County building codes, ensuring acceptance by local jurisdictions. JEM will provide certified contractors to meet these standards.
+f. Time Schedule
+
+    Oct 2025: Grant agreement signed; outreach begins.
+
+    Nov 2025 – Feb 2026: Select 4-5 recipients; conduct inspections.
+
+    Mar 2026 – Jun 2027: Execute repairs (1-2 projects per quarter).
+
+    Jul – Sep 2027: Final inspections, reporting, and closeout.
+
+g. Staffing
+
+    Program Manager (1 FTE): Karly, with 30 years of experience in housing management and renovations, will oversee administration, reporting, and compliance.
+
+    Technical Lead (1 FTE): JEM Home Restoration’s lead contractor will manage repair execution and quality control.
+
+    Volunteers: Local community members will assist with outreach and minor tasks (e.g., painting).
+
+h. Estimated Beneficiaries
+
+    Number Assisted: 4-5 households (10-15 individuals, assuming 2.5-3 per household).
+
+    Demographics: 85% very low-income (<50% AMI, ~$20,000 in Columbia County), 15% low-income (50-80% AMI). At least 2 minority households (based on Fort White’s 20% minority population).
+
+    No rental/co-op units, so no restrictive covenants apply.
+
+i. Geographical Area
+
+The program will serve rural Fort White (Columbia County, pop. ~4,000, outside MSA) and nearby rural counties (e.g., Baker, pop. ~7,000; Bradford, pop. ~5,000), all meeting RD’s rural definition (<10,000 or remote areas per 7 CFR 1944.656). Census data shows 40%+ substandard housing and 25% poverty in these areas.
+j. Budget
+
+Total program cost: $500,000. HPG funds: $200,000 (40%). Leveraged funds: $300,000 (JEM in-kind labor, homeowner sweat equity, local donations).
+Budget Table (SF-424A):
+
+Category
+	
+
+HPG Funds
+	
+
+Leveraged Funds
+	
+
+Total
+
+Repairs/Rehab (4-5 projects, ~$50K avg)
+	
+
+$160,000
+	
+
+$240,000
+	
+
+$400,000
+
+Admin (15%)
+	
+
+$30,000
+	
+
+$50,000
+	
+
+$80,000
+
+Travel/Supplies
+	
+
+$10,000
+	
+
+$10,000
+	
+
+$20,000
+
+Total
+	
+
+$200,000
+	
+
+$300,000
+	
+
+$500,000
+
+    Draw Schedule: Quarterly ($50,000/draw).
+
+    Indirect Costs: None; direct cost policy used.
+
+    Program Income: Any homeowner repayments tracked via QuickBooks; reinvested into repairs.
+
+    Security Instruments: If liens are used, they will transfer to a local non-profit if NextGen dissolves.
+
+k. Accounting System
+
+NextGen will use QuickBooks to track HPG funds, leveraged contributions, and program income, ensuring compliance with 7 CFR 1944.683(b). Monthly reconciliations will be conducted.
+l. Evaluation Method
+
+    Metrics: Number of homes repaired (target: 4-5), cost per project, homeowner satisfaction (surveys), energy savings (post-repair utility bills).
+
+    Reporting: Quarterly reports to RD detailing units assisted, funds spent, and outcomes (per 7 CFR 1944.683(b)).
+
+    Effectiveness: Compare pre/post-repair housing conditions and resident quality of life.
+
+m. Other Financial Resources
+
+    Sources: JEM in-kind labor ($150,000), homeowner sweat equity ($50,000), local church/community donations ($100,000).
+
+    Tracking: Separate accounts in QuickBooks for each source.
+
+n. Security Instrument Disposition
+
+If NextGen loses legal status, any liens or security instruments will transfer to a local non-profit (e.g., Habitat for Humanity) to ensure continued homeowner protection.
+o. Outreach Efforts
+
+Per 7 CFR 1944.671(b), we will:
+
+    Advertise in Lake City Reporter and community boards.
+
+    Host 2 town halls in Fort White and Baker County (Nov 2025).
+
+    Partner with local churches and food banks to reach very low-income residents.
+
+3. Applicant Experience and Capacity
+
+    Leadership: Karly, Executive Director, has 30 years of experience managing housing rehabilitation and weatherization programs, including $2M+ in past projects.
+
+    Partner: JEM Home Restoration has 10 years of experience in rural home renovations, completing 50+ projects.
+
+    Audit History: No outstanding audit or investigative findings; clean financials provided.
+
+    Other Activities: NextGen runs community garden and education programs, with $100,000 in annual funding, ensuring capacity to manage HPG without disruption.
+
+4. Need and Selection Criteria
+
+    Area Need: Census data shows 40% of homes in Columbia County are substandard (e.g., lacking plumbing, heating); 25% of households are very low-income (~$20,000). NE Florida counties (e.g., Baker) have similar needs.
+
+    Very Low-Income Focus: 85% of assisted households will be very low-income (20 points).
+
+    Leveraging: HPG funds = 40% of total cost (20 points).
+
+    Rural Area: All areas <10,000 population (10 points).
+
+    Admin Costs: 15% of HPG funds (5 points).
+
+    Overcrowding: Program will add bedrooms for multi-generational families (5 points).
+
+    Historic Properties: Minimal HPG funds for historic homes; focus on modern repairs.
+
+5. Public Participation and Intergovernmental Review
+
+    Public Comment: This statement is available for review at www.nextgenagrisolutions.org/hpg-proposal and 123 Main St., Fort White, FL 32038, from August 19 to September 3, 2025. Comments will be addressed in the preapplication.
+
+    Local Consultation: Letters from Columbia and Baker County officials confirm no duplication and community benefit.
+
+    SPOC: If Florida requires, preapplication will be submitted to the state SPOC (pending RDSO confirmation).
+
+6. Additional Information
+
+    Civil Rights: Data on race, sex, and national origin will be collected per 7 CFR 1944.671, using OMB standards, and maintained for RD review.
+
+    Compliance: NextGen will comply with Title VI, ADA, Section 504, and other regulations via Form RD 400-4 (Assurance Agreement).
+
+    Debarment: Neither NextGen nor JEM is debarred (verified per 2 CFR 180).
+
+    SAM/UEI: Active SAM registration with UEI provided in preapplication.
+
+We welcome public input to ensure this program meets Fort White and NE Florida’s housing needs. Thank you for your support.
