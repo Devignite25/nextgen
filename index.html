@@ -180,6 +180,8 @@
   .checkbox-group label{font-size:.9rem;color:var(--muted);font-weight:400;}
   .form-note{margin-top:1.4rem;background:#fdf6e3;border:1px solid var(--gold-soft);border-radius:8px;padding:1.1rem 1.3rem;font-size:.95rem;color:#6b5320;}
   .form-note a{color:var(--forest);font-weight:700;}
+  .form-note.success{background:#eef5ef;border-color:#b9d4bf;color:#2c5a3c;}
+  .form-note.error{background:#fbeeec;border-color:#e5b3ad;color:#8c3a32;}
 
   /* ---------- news / careers ---------- */
   .article{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:3rem;margin-bottom:2rem;}
@@ -791,21 +793,88 @@
     revealScan();
   }
 
-  // --- Honest form notices (no backend yet)
-  function wirePendingForm(formId, messageHtml){
+  // --- Live form relay (Vercel + Resend). Submissions email Karly@nextgenagrisolutions.org.
+  var FORM_ENDPOINT = 'https://nextgen-form-relay-tzb3-80zwrzsle-the-wider-lens.vercel.app/api/submit';
+
+  function formNote(form, cls, html){
+    var old = form.querySelector('.form-note');
+    if(old) old.remove();
+    var note = document.createElement('div');
+    note.className = 'form-note ' + cls;
+    note.innerHTML = html;
+    form.appendChild(note);
+    note.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function wireRelayForm(formId, formType, collect, successHtml){
     var form = document.getElementById(formId);
     if(!form) return;
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      var note = form.querySelector('.form-note.pending');
-      if(!note){
-        note = document.createElement('div');
-        note.className = 'form-note pending';
-        note.innerHTML = messageHtml;
-        form.appendChild(note);
-        note.scrollIntoView({behavior:'smooth', block:'nearest'});
-      }
+      var btn = form.querySelector('button[type="submit"]');
+      var origLabel = btn ? btn.textContent : '';
+      if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+      var payload = collect(form);
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      }).then(function(resp){ return resp.json().catch(function(){ return {ok:false}; }); })
+      .then(function(data){
+        if(data && data.ok){
+          form.reset();
+          formNote(form, 'success', successHtml);
+        } else {
+          formNote(form, 'error', '<strong>Something went wrong sending your message.</strong> Please call <a href="tel:9042397286">904-239-7286</a> or email <a href="mailto:Karly@nextgenagrisolutions.org">Karly@nextgenagrisolutions.org</a>.');
+        }
+      })
+      .catch(function(){
+        formNote(form, 'error', '<strong>Something went wrong sending your message.</strong> Please call <a href="tel:9042397286">904-239-7286</a> or email <a href="mailto:Karly@nextgenagrisolutions.org">Karly@nextgenagrisolutions.org</a>.');
+      })
+      .finally(function(){ if(btn){ btn.disabled = false; btn.textContent = origLabel; } });
     });
+  }
+
+  function val(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+  function collectVeteran(){
+    var full = val('vFullName').split(/\s+/);
+    var first = full.shift() || '', last = full.join(' ');
+    var extras = [];
+    if(val('vFarming')) extras.push('Farming experience: ' + val('vFarming'));
+    if(val('vLand')) extras.push('Land access: ' + val('vLand'));
+    if(val('vUsda')) extras.push('USDA programs: ' + val('vUsda'));
+    if(val('vBestTime')) extras.push('Best time to reach: ' + val('vBestTime'));
+    if(val('vHeard')) extras.push('Heard about us: ' + val('vHeard'));
+    var msg = val('vGoals');
+    if(extras.length) msg += (msg ? '\n\n' : '') + extras.join('\n');
+    return {
+      form: 'veteran',
+      website: '',
+      fields: {
+        firstName: first, lastName: last || '(not given)',
+        email: val('vEmail'), phone: val('vPhone'), county: val('vCounty'),
+        program: val('vProgram'),
+        branch: (val('vBranch') ? val('vBranch') + ' — ' : '') + 'Veteran status: ' + val('vVeteran'),
+        experience: 'See message details below.',
+        message: msg
+      }
+    };
+  }
+
+  function collectContact(form){
+    var fd = new FormData(form);
+    return {
+      form: 'contact',
+      website: '',
+      fields: {
+        firstName: (fd.get('firstName') || '').toString().trim(),
+        lastName: (fd.get('lastName') || '').toString().trim(),
+        email: (fd.get('email') || '').toString().trim(),
+        subject: (fd.get('subject') || '').toString().trim(),
+        message: (fd.get('message') || '').toString().trim()
+      }
+    };
   }
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -831,11 +900,11 @@
       });
     }
 
-    // Forms: honest pending notices until a backend is connected
-    wirePendingForm('veteranForm',
-      '<strong>Online submissions aren\u2019t connected yet.</strong> Please call <a href="tel:9042397286">904-239-7286</a> and a member of the NextGen team will take your details.');
-    wirePendingForm('contactForm',
-      '<strong>Online messages aren\u2019t connected yet.</strong> Please call <a href="tel:9042397286">904-239-7286</a> or email <a href="mailto:Karly@nextgenagrisolutions.org">Karly@nextgenagrisolutions.org</a>.');
+    // Forms: live relay -> email
+    wireRelayForm('veteranForm', 'veteran', collectVeteran,
+      '<strong>Thank you — your interest form was sent.</strong> A member of the NextGen team will reach out soon. If you need us sooner, call <a href="tel:9042397286">904-239-7286</a>.');
+    wireRelayForm('contactForm', 'contact', collectContact,
+      '<strong>Thank you — your message was sent.</strong> We\u2019ll get back to you shortly.');
 
     // Service details modal
     var modal = document.getElementById('serviceModal');
